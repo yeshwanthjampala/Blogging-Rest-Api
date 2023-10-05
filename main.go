@@ -21,13 +21,7 @@ type Post struct {
 }
 
 func main() {
-	// Connect to the MySQL database
-	// db, err = gorm.Open("mysql", "username:password@tcp(localhost:3306)/dbname?charset=utf8&parseTime=True&loc=Local")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// defer db.Close()
-
+	// Connect to the MySQL databas
 	db, err = gorm.Open("mysql", "root:Yeshwanth@1234@tcp(localhost:3306)/blogging?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		log.Println("Unable to connect to database")
