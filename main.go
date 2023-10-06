@@ -71,6 +71,16 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
+	// Basic validation checks
+	if post.Title == "" {
+		respondWithError(w, http.StatusBadRequest, "Title is required")
+		return
+	}
+	if post.Body == "" {
+		respondWithError(w, http.StatusBadRequest, "Body is required")
+		return
+	}
+
 	db.Create(&post)
 	respondWithJSON(w, http.StatusCreated, post)
 }
@@ -91,6 +101,16 @@ func UpdatePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer r.Body.Close()
+
+	// Basic validation checks for updated data
+	if updatedPost.Title == "" {
+		respondWithError(w, http.StatusBadRequest, "Title is required")
+		return
+	}
+	if updatedPost.Body == "" {
+		respondWithError(w, http.StatusBadRequest, "Body is required")
+		return
+	}
 
 	db.Model(&post).Updates(updatedPost)
 	respondWithJSON(w, http.StatusOK, post)
